@@ -49,17 +49,17 @@ class LSTMLayer:
         self.parameter['h'+str(t)] = np.multiply(self.parameter['o'+str(t)], np.tanh(self.parameter['C'+str(t)]))
 
     def forwardProp(self, t):
-        prev = np.row_stack((self.h_prev, self.x))
+        self.forgetGate(t)
+        self.inputGate(t)
+        self.cellState(t)
+        self.outputGate(t)
 
-        f = Functions.sigmoid(np.dot(self.parameter['wf'], prev) + self.parameter["bf"])
-        i = Functions.sigmoid(np.dot(self.parameter["Wi"], prev) + self.parameter["bi"])
-        c_bar = np.tanh(np.dot(self.parameter["Wc"], prev) + self.parameter["bc"])
+        h = self.parameter['h'+str(t)]
+        # v = np.dot(self.parameter["wv"], h) + self.parameter["bv"]
+        # y_hat = self.softmax(v)
 
-        c = f * c_prev + i * c_bar
-        o = Functions.sigmoid(np.dot(self.parameter["Wo"], z) + self.parameter["bo"])
-        h = o * np.tanh(c)
-
-        return h, o, c, c_bar, i, f, prev
+        # return y_hat
+        return h
 
     def predict(self, t):
         return self.forwardProp(t)
