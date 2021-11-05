@@ -7,4 +7,4 @@ Anggota kelompok:
 4. Hansel Grady Daniel Thamrin      13518140
 
 Cara menjalankan program:
-SOON
+jalankan perintah berikut `python ./run_predict.py`
