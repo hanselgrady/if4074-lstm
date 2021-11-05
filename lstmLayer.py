@@ -55,7 +55,7 @@ class LSTMLayer:
         i = Functions.sigmoid(np.dot(self.parameter["Wi"], prev) + self.parameter["bi"])
         c_bar = np.tanh(np.dot(self.parameter["Wc"], prev) + self.parameter["bc"])
 
-        c = f * c_prev + i * c_bar
+        c = f * self.c_prev + i * c_bar
         o = Functions.sigmoid(np.dot(self.parameter["Wo"], z) + self.parameter["bo"])
         h = o * np.tanh(c)
 
