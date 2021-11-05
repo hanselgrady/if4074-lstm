@@ -4,14 +4,14 @@ from functions import Functions
 
 class LSTMLayer:
     # def __init__(self, size, n_cell, vocab_size, x, target):
-    def __init__(self, size, n_cell, x, target):
+    def __init__(self, size, n_cell):
         self.size = size
         self.n_cell = n_cell
         # self.vocab_size = vocab_size
         self.c_prev = np.zeros((self.n_cell, 1))
         self.h_prev = np.zeros((self.n_cell, 1))
-        self.x = x # array of array
-        self.target = target # array of number
+        self.x = [[]] # array of array
+        # self.target = target # array of number
         self.sigmoid = np.vectorize(Functions.sigmoid) # allow function to receive input in form of vector
         self.softmax = np.vectorize(Functions.softmax) # allow function to receive input in form of vector
 
@@ -67,3 +67,8 @@ class LSTMLayer:
     def getLayerType(self, id):
         #id: id layer >= 0
         return 'lstm'+str(id)+' (LSTM)'
+
+    def getNumOfParam(self, k):
+        m = len(self.x.shape)
+        n = self.n_cell
+        return (m+n+1)*4*n+(n+1)*k
