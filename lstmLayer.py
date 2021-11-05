@@ -63,3 +63,7 @@ class LSTMLayer:
 
     def predict(self, t):
         return self.forwardProp(t)
+
+    def getLayerType(self, id):
+        #id: id layer >= 0
+        return 'lstm'+str(id)+' (LSTM)'

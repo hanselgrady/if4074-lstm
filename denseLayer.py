@@ -18,8 +18,8 @@ class DenseLayer:
     self.predict = []
     self.delta_weight = []
 
-  def getLayerType(self):
-    return 'dense (Dense)'
+  def getLayerType(self, id):
+    return 'dense'+str(id)+' (Dense)'
 
   def get_func(self):
     return self.func
